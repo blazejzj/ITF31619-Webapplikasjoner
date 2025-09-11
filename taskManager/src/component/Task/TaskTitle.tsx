@@ -1,3 +1,3 @@
 export default function TaskTitle({ title }: { title: string }) {
-    return <h2>{title}</h2>;
+    return <h2 className="font-semibold text-lg">{title}</h2>;
 }
