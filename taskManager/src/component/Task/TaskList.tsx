@@ -3,15 +3,15 @@ import TaskCard from "./TaskCard";
 
 type TaskListProps = {
     children: React.ReactNode;
+    onFinishTask: (task: Task) => void;
     tasks: Task[];
-    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 };
 
-export default function TaskList({ children, tasks, setTasks }: TaskListProps) {
-    const onFinish = (task: Task) => {
-        setTasks((prevTasks) => prevTasks.filter((t) => t.id !== task.id));
-    };
-
+export default function TaskList({
+    children,
+    tasks,
+    onFinishTask,
+}: TaskListProps) {
     return (
         <>
             <section className="flex gap-2 mt-20 flex-1 flex-wrap">
@@ -20,7 +20,7 @@ export default function TaskList({ children, tasks, setTasks }: TaskListProps) {
                         <TaskCard
                             key={task.id}
                             task={task}
-                            onFinish={onFinish}
+                            onFinish={onFinishTask}
                         />
                     ))
                 ) : (
