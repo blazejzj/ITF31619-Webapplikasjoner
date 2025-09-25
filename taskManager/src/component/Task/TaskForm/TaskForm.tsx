@@ -6,6 +6,7 @@ type AddTaskFunction = {
         title: string;
         content: string;
         dueDate: Date;
+        completed: boolean;
     }) => void;
 };
 
@@ -15,6 +16,7 @@ export default function TaskForm({ addTask }: AddTaskFunction) {
         title: "",
         content: "",
         dueDate: new Date(),
+        completed: false,
     });
 
     const updateWithEvent = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +34,15 @@ export default function TaskForm({ addTask }: AddTaskFunction) {
         e.preventDefault();
 
         const { title, content, dueDate } = formData;
-        addTask({ title, content, dueDate });
-        setFormData({ id: "", title: "", content: "", dueDate: new Date() });
+        const completed = false;
+        addTask({ title, content, dueDate, completed });
+        setFormData({
+            id: "",
+            title: "",
+            content: "",
+            dueDate: new Date(),
+            completed: false,
+        });
     };
 
     return (
